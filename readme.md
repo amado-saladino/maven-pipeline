@@ -4,7 +4,7 @@ Run tests with maven in pipeline on Jenkins server.
 
 ## Plugins
 
-`Docker` plugin should be installed in jenkins before running the pipeline.
+`Docker` and `docker-pipeline` plugins should be installed in jenkins before running the pipeline.
 
 ## Manage Clouds
 
