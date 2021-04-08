@@ -1,26 +1,29 @@
 pipeline {
-	agent {
-        dockerfile {
-            args "-v maven-repo:/root/.m2"
-        }
-    }
+	agent any
 	
 	stages {
 		stage('checkout') {
       steps {
-        git(url: "https://github.com/amado-saladino/maven-pipeline.git", branch: 'master')
+        git(url: "https://github.com/amado-saladino/maven-pipeline.git", branch: 'docker-build')
       }
     }
 	
-	stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
+	stage('build image') {
+        steps {
+            sh 'docker build -t test .'
+        }
+    }
+    
+    stage('run test container') {
+        steps {
+            sh "docker run --rm -v ${env.WORKSPACE}:/app -v maven-repo:/root/.m2 test"
+        }
+        post {
                 always {
-                    junit "target/surefire-reports/*.xml"
+					junit '**/target/surefire-reports/TEST-*.xml'
                 }
             }
-        }
+    }
+
   }
 }
