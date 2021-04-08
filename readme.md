@@ -22,9 +22,19 @@ Docker Host URI `unix:///var/run/docker.sock`
 ### Docker Agent Template
 
 - Labels `docker-agent`
-- Name `docker-agent-1`
+- Name `docker-node`
 - Docker image `amadosaladino/se`
-- Hostname (Container settings) `docker-agenet-1`
+- Hostname (Container settings) `docker-node`
+
+### Image Dockerfile
+
+Image with the mentioned packages installed, in this case, the image is tagged `test-agent:1.0`
+
+```Dockerfile
+FROM selenium/standalone-chrome
+RUN sudo apt update
+RUN sudo apt install -y openjdk-8-jdk maven git
+```
 
 ## Repo
 

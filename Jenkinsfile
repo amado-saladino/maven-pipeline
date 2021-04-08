@@ -4,6 +4,12 @@ pipeline {
     }
 	
 	stages {
+        stage('setup') {
+            steps {
+                sh 'sudo apt install -y git'
+            }
+        }
+
 		stage('checkout') {
       steps {
         git(url: "https://github.com/amado-saladino/maven-pipeline.git", branch: 'cloud-docker-agent')
