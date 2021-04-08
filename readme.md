@@ -8,21 +8,24 @@ Run tests with maven in pipeline on Jenkins server.
 
 ## Manage Clouds
 
-This one is optional, in case it is required to configure the `docker host`, the URL should be configured as `unix:///var/run/docker.sock`
+Access permission to docker engine should be given on the host by either of these ways:
+
+- `chmod 777 /var/run/docker.sock`
+- `usermod -a -G docker jenkins`
+
+### Config Docker Host
+
+From `Manage Jenkins` select `Configure Cloud`
+
+Docker Host URI `unix:///var/run/docker.sock`
+
+### Docker Agent Template
+
+- Labels `docker-agent`
+- Name `docker-agent-1`
+- Docker image `amadosaladino/se`
+- Hostname (Container settings) `docker-agenet-1`
 
 ## Repo
 
-The repo must contain both `Dockerfile` and `Jenkinsfile` under the root directory.
-
-## Dockerfile
-
-These steps should not be there inside `Dockerfile`:
-
-- `COPY . .`
-- `mvn clean test`
-
-as Jenkins will build the image and automatically checkout the repo inside the container.
-
-## Variations
-
-Switch to `docker-build` branch for more details about how to build a docker image and run the test inside a container the normal way, only shell commands are used.
+The repo should contain `Jenkinsfile` under the root directory.

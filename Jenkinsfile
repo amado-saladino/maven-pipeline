@@ -1,14 +1,12 @@
 pipeline {
 	agent {
-        dockerfile {
-            args "-v maven-repo:/root/.m2"
-        }
+        label 'docker-agent'
     }
 	
 	stages {
 		stage('checkout') {
       steps {
-        git(url: "https://github.com/amado-saladino/maven-pipeline.git", branch: 'master')
+        git(url: "https://github.com/amado-saladino/maven-pipeline.git", branch: 'cloud-docker-agent')
       }
     }
 	
