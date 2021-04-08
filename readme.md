@@ -22,3 +22,7 @@ These steps should not be there inside `Dockerfile`:
 - `mvn clean test`
 
 as Jenkins will build the image and automatically checkout the repo inside the container.
+
+## Variations
+
+Switch to `docker-build` branch for more details about how to build a docker image and run the test inside a container the normal way, only shell commands are used.
