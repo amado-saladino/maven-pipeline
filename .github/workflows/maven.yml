@@ -28,3 +28,4 @@ jobs:
       with:
         check_name: Maven Test Report
         github_token: ${{ github.token }}
+        report_paths: "target/surefire-reports/TEST-*.xml"
