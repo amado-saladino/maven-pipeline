@@ -31,11 +31,6 @@ jobs:
         github_token: ${{ github.token }}
         report_paths: "target/surefire-reports/TEST-*.xml"
         
-    - name: Publish Unit Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1
-      with:
-        files: target/surefire-reports/TEST-*.xml
-        
     - name: HTML Test Report
       uses: actions/upload-artifact@v2
       with:
@@ -54,3 +49,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           path: artifacts
+          
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: artifacts/target/surefire-reports/TEST-*.xml    
