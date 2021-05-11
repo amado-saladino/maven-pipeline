@@ -29,11 +29,11 @@ jobs:
         check_name: Maven Test Report
         github_token: ${{ github.token }}
         report_paths: "target/surefire-reports/TEST-*.xml"
-    - name: Upload Test Results        
+    - name: Upload Surefire Report
       uses: actions/upload-artifact@v2
       with:
         name: Uploading Test Results
-        path: "target/surefire-reports/TEST-*.xml"
+        path: "target/surefire-reports/*"
         
   publish-test-results:
     name: "Publish Tests Results"
@@ -52,3 +52,7 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: artifacts/**/*.xml
+      - name: Publish Unit Test HTML Report
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: artifacts/**/index.html
