@@ -34,13 +34,7 @@ jobs:
       with:
         name: Uploading Test Results
         path: "target/surefire-reports/TEST-*.xml"
-    - name: Upload Surefire HTML Report
-      uses: actions/upload-artifact@v2
-      if: always()
-      with:
-        name: Uploading Test Results
-        path: "target/surefire-reports/*"
-        
+           
   publish-test-results:
     name: "Publish Tests Results"
     needs: [build-maven]
