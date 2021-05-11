@@ -35,7 +35,13 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: HTML Report
-        path: "target/surefire-reports/*"    
+        path: "target/surefire-reports/*"
+     
+    - name: Upload Screenshots
+      uses: actions/upload-artifact@v2
+      with:
+        name: Screenshots
+        path: "screenshots/*"   
            
   publish-test-results:
     name: "Publish Tests Results"
