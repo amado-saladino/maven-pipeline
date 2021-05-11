@@ -34,6 +34,11 @@ jobs:
       with:
         name: Uploading Test Results
         path: "target/surefire-reports/TEST-*.xml"
+    - name: Test Results - HTML
+      uses: actions/upload-artifact@v2
+      with:
+        name: HTML report
+        path: "target/surefire-reports/*"    
            
   publish-test-results:
     name: "Publish Tests Results"
