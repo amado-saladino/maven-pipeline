@@ -30,13 +30,7 @@ jobs:
         check_name: Maven Test Summary Report
         github_token: ${{ github.token }}
         report_paths: "target/surefire-reports/TEST-*.xml"
-    
-    - name: Upload Test Report
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-report
-        path: "target/surefire-reports/TEST-*.xml"
-        
+            
     - name: HTML Test Report
       uses: actions/upload-artifact@v2
       with:
@@ -47,7 +41,7 @@ jobs:
     name: "Publish Tests Results"
     needs: [build-maven]
     runs-on: ubuntu-latest
-    # the build-and-test job might be skipped, we don't need to run this job then
+  
     if: success() || failure()
 
     steps:
@@ -56,7 +50,7 @@ jobs:
         with:
           path: artifacts
           
-      - name: Publish Unit Test Results
+      - name: 'Unit Test Results'
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: artifacts/**/TEST-*.xml 
