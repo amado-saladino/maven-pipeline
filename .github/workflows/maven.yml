@@ -47,13 +47,13 @@ jobs:
     name: "Publish Tests Results"
     needs: [build-maven]
     runs-on: ubuntu-latest
-    env:
-      VERSION=$(date +%s)
   
     if: success() || failure()
 
     steps:
-      - name: reading VERSION
+      - name: setting VERSION
+        run: VERSION=$(date +%s)
+      - name: getting VERSION var
         run: echo ${VERSION}
       - name: Download Artifacts
         uses: actions/download-artifact@v2
