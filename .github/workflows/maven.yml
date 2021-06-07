@@ -44,7 +44,6 @@ jobs:
         path: "screenshots/*"   
            
   publish-test-results:
-    id: publish_test_results
     name: "Publish Tests Results"
     needs: [build-maven]
     runs-on: ubuntu-latest
