@@ -51,6 +51,13 @@ jobs:
     if: success() || failure()
 
     steps:
+      - name: create version number
+        id: version_id
+        run: |
+          echo "::set-output name=version-number::$(date +%s)"
+      - name: print version
+        run: |
+          echo ${{steps.version_id.outputs.version-number}}
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
