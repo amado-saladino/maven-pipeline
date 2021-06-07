@@ -51,10 +51,12 @@ jobs:
     if: success() || failure()
 
     steps:
-      - name: setting VERSION
-        run: VERSION=$(date +%s)
-      - name: getting VERSION var
-        run: echo ${VERSION}
+      - name: export VERSION
+        run: |
+          export VERSION=$(date +%s)
+          echo $VERSION
+      - name: read VERSIONS
+        run: echo $VERSION
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
