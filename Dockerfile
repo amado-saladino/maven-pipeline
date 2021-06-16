@@ -1,3 +1,7 @@
 FROM selenium/standalone-chrome
-RUN sudo apt update
-RUN sudo apt install -y openjdk-8-jdk maven
+RUN sudo apt update && \
+    sudo apt install -y maven && \
+    sudo apt install -y default-jdk
+WORKDIR /app
+ENTRYPOINT ["sudo","mvn"]
+CMD ["clean","test"]
