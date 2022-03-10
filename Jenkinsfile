@@ -14,7 +14,7 @@ pipeline {
 	
 	stage('Test') {
             steps {
-                sh 'sudo mvn test'
+                sh 'mvn test'
             }
             post {
                 always {
