@@ -1,8 +1,7 @@
 FROM selenium/standalone-chrome
-USER 0
-RUN sudo apt update && \
-    sudo apt install -y maven && \
-    sudo apt install -y default-jdk
 WORKDIR /app
-ENTRYPOINT ["sudo","mvn"]
+USER 0
+RUN apt update && \
+    apt install -y maven default-jdk git
+ENTRYPOINT ["mvn"]
 CMD ["clean","test"]
