@@ -1,4 +1,4 @@
 FROM selenium/standalone-chrome
-RUN sudo apt update && \
-    sudo apt install -y maven git && \
-    sudo apt install -y default-jdk
+USER 0
+RUN apt update && \
+    apt install -y maven git default-jdk
